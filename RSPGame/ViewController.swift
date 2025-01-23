@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     private let backgroundImageView = UIImageView()
     private let titleLabelView = UILabel()
     private let scoreLabelView = UILabel()
+    private let leftHandImageView = UIImageView()
+    private let rightHandImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +29,14 @@ private extension ViewController {
         view.addSubview(backgroundImageView)
         view.addSubview(titleLabelView)
         view.addSubview(scoreLabelView)
+        view.addSubview(leftHandImageView)
+        view.addSubview(rightHandImageView)
         
         configureBackgroundImageView()
         configureTitleLabelView()
         configureScoreLabelView()
+        configureLeftHandImageView()
+        configureRightHandImageView()
     }
     
     func configureBackgroundImageView() {
@@ -78,6 +84,34 @@ private extension ViewController {
             scoreLabelView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scoreLabelView.topAnchor.constraint(equalTo: titleLabelView.bottomAnchor),
             scoreLabelView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 50)
+        ])
+    }
+    
+    func configureLeftHandImageView() {
+        
+        leftHandImageView.image = .leftPaper1
+        leftHandImageView.contentMode = .scaleToFill
+        leftHandImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leftHandImageView.topAnchor.constraint(equalTo: scoreLabelView.centerYAnchor),
+            leftHandImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            leftHandImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            leftHandImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -view.frame.width / 3.3)
+        ])
+    }
+    
+    func configureRightHandImageView() {
+        
+        rightHandImageView.image = .rightScissors1
+        rightHandImageView.contentMode = .scaleToFill
+        rightHandImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            rightHandImageView.topAnchor.constraint(equalTo: scoreLabelView.centerYAnchor),
+            rightHandImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            rightHandImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            rightHandImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.frame.width / 3.3)
         ])
     }
     
