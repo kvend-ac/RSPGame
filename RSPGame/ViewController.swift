@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     private let backgroundImageView = UIImageView()
     private let titleLabelView = UILabel()
+    private let scoreLabelView = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,11 @@ private extension ViewController {
     func pipelineUI() {
         view.addSubview(backgroundImageView)
         view.addSubview(titleLabelView)
+        view.addSubview(scoreLabelView)
         
         configureBackgroundImageView()
         configureTitleLabelView()
+        configureScoreLabelView()
     }
     
     func configureBackgroundImageView() {
@@ -59,8 +62,23 @@ private extension ViewController {
             titleLabelView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             titleLabelView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07)
         ])
+    }
+    
+    func configureScoreLabelView() {
         
+        scoreLabelView.text = "0:0"
+        scoreLabelView.textColor = .textColor
+        scoreLabelView.font = UIFont(name: "Baloo Cyrillic", size: 500)
+        scoreLabelView.adjustsFontSizeToFitWidth = true
+        scoreLabelView.textAlignment = .center
+        scoreLabelView.translatesAutoresizingMaskIntoConstraints = false
         
+        NSLayoutConstraint.activate([
+            scoreLabelView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scoreLabelView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scoreLabelView.topAnchor.constraint(equalTo: titleLabelView.bottomAnchor),
+            scoreLabelView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: 50)
+        ])
     }
     
 }
