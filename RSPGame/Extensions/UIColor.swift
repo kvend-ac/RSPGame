@@ -12,4 +12,8 @@ extension UIColor {
                                    green: 81 / 255,
                                    blue: 81 / 255,
                                    alpha: 1)
+    static let darkButtonBackgroundColor = UIColor(red: 26 / 255,
+                                                   green: 56 / 255,
+                                                   blue: 56 / 255,
+                                                   alpha: 1)
 }

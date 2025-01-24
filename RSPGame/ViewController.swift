@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let scoreLabelView = UILabel()
     private let leftHandImageView = UIImageView()
     private let rightHandImageView = UIImageView()
+    private let startButtonView = UIButton(type: .system)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,14 @@ private extension ViewController {
         view.addSubview(scoreLabelView)
         view.addSubview(leftHandImageView)
         view.addSubview(rightHandImageView)
+        view.addSubview(startButtonView)
         
         configureBackgroundImageView()
         configureTitleLabelView()
         configureScoreLabelView()
         configureLeftHandImageView()
         configureRightHandImageView()
+        configureStartButtonView()
     }
     
     func configureBackgroundImageView() {
@@ -57,7 +60,7 @@ private extension ViewController {
         
         titleLabelView.text = "Rock Paper Scissors"
         titleLabelView.textColor = .textColor
-        titleLabelView.font = UIFont(name: "BerkshireSwash-Regular", size: 50)
+        titleLabelView.font = UIFont(name: "BerkshireSwash-Regular", size: 500)
         titleLabelView.adjustsFontSizeToFitWidth = true
         titleLabelView.textAlignment = .center
         titleLabelView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +116,29 @@ private extension ViewController {
             rightHandImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             rightHandImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.frame.width / 3.3)
         ])
+    }
+    
+    func configureStartButtonView() {
+        
+        startButtonView.setTitle("start", for: .normal)
+        startButtonView.tintColor = .white
+        startButtonView.titleLabel?.font = UIFont(name: "BerkshireSwash-Regular", size: 500)
+        startButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
+        startButtonView.titleLabel?.textAlignment = .center
+        startButtonView.backgroundColor = .darkButtonBackgroundColor
+        startButtonView.layer.cornerRadius = 20
+        startButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            startButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButtonView.topAnchor.constraint(equalTo: leftHandImageView.bottomAnchor, constant: 50),
+            startButtonView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            startButtonView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
+            
+            startButtonView.titleLabel!.centerXAnchor.constraint(equalTo: startButtonView.centerXAnchor),
+            startButtonView.titleLabel!.centerYAnchor.constraint(equalTo: startButtonView.centerYAnchor, constant: -3)
+        ])
+        
     }
     
 }
