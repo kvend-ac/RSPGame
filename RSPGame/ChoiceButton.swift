@@ -42,12 +42,14 @@ final class ChoiceButton: UIButton {
         self.titleLabel?.adjustsFontSizeToFitWidth = true
         self.titleLabel?.textAlignment = .center
         
+        let scaleImage = 0.7
+        
         NSLayoutConstraint.activate([
             //ImageView constraits
             self.imageView!.topAnchor.constraint(equalTo: self.topAnchor, constant: 7),
             self.imageView!.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.imageView!.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
-            self.imageView!.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            self.imageView!.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: scaleImage),
+            self.imageView!.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: scaleImage),
             //TitleView constraits
             self.titleLabel!.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.titleLabel!.centerXAnchor.constraint(equalTo: self.centerXAnchor),

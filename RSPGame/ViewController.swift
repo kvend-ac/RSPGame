@@ -16,8 +16,9 @@ class ViewController: UIViewController {
     private let rightHandImageView = UIImageView()
     private let startButtonView = UIButton(type: .system)
     private let buttonsView = UIView()
-    private let rockButtonView = UIButton(type: .custom)
-    private let papperButtonView = ChoiceButton(title: "Papper", image: .leftPaper2, color: .systemGreen)
+    private let rockButtonView = ChoiceButton(title: "Rock", image: .leftRock1, color: .yellowProjectColor)
+    private let scissorsButtonView = ChoiceButton(title: "Scissors", image: .leftScissors1, color: .orangeProjectColor)
+    private let papperButtonView = ChoiceButton(title: "Papper", image: .leftPaper2, color: .greenProjectColor)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,11 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         buttonsView.layer.cornerRadius = buttonsView.frame.height / 3
         rockButtonView.imageView!.layer.cornerRadius = rockButtonView.imageView!.frame.height / 2
-        rockButtonView.imageView!.layer.cornerRadius = rockButtonView.frame.width * 0.7 / 2
-        papperButtonView.imageView!.layer.cornerRadius = papperButtonView.frame.width * 0.7 / 2
+        
+        let scaleImage = 0.7
+        rockButtonView.imageView!.layer.cornerRadius = rockButtonView.frame.width * scaleImage / 2
+        papperButtonView.imageView!.layer.cornerRadius = papperButtonView.frame.width * scaleImage / 2
+        scissorsButtonView.imageView!.layer.cornerRadius = scissorsButtonView.frame.width * scaleImage / 2
     }
 
 }
@@ -46,6 +50,7 @@ private extension ViewController {
         configureButtonsView()
         configureStartButtonView()
         configureRockButtonView()
+        configureScissorsButtonView()
         configurePapperButtonView()
     }
     
@@ -163,6 +168,7 @@ private extension ViewController {
     func configureButtonsView() {
         
         view.addSubview(buttonsView)
+        
         buttonsView.backgroundColor = .darkButtonBackgroundColor
         buttonsView.layer.opacity = 0.6
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
@@ -177,57 +183,36 @@ private extension ViewController {
     }
     
     func configureRockButtonView() {
+        
         view.addSubview(rockButtonView)
-        
-        rockButtonView.translatesAutoresizingMaskIntoConstraints = false
-//        rockButtonView.configuration = .plain()
-//        rockButtonView.configuration?.imagePlacement = .top
-//        rockButtonView.configuration?.image = .leftRock1
-//        rockButtonView.configuration?.title = "Rock"
-//        rockButtonView.backgroundColor = .gray
-        
-        //ImageView settings
-        rockButtonView.setImage(.leftScissors1, for: .normal)
-        rockButtonView.imageView?.translatesAutoresizingMaskIntoConstraints = false
-        rockButtonView.imageView?.backgroundColor = .systemOrange
-        rockButtonView.imageView?.layer.borderColor = UIColor.white.cgColor
-        rockButtonView.imageView?.layer.borderWidth = 5
-        rockButtonView.imageView?.clipsToBounds = true
-        rockButtonView.imageView?.contentMode = .scaleAspectFit
-        
-        //TitleView settings
-        rockButtonView.setTitle("Rock", for: .normal)
-        rockButtonView.titleLabel?.translatesAutoresizingMaskIntoConstraints = false
-        rockButtonView.tintColor = .white
-        rockButtonView.titleLabel?.font = UIFont(name: "BerkshireSwash-Regular", size: 500)
-        rockButtonView.titleLabel?.adjustsFontSizeToFitWidth = true
-        rockButtonView.titleLabel?.textAlignment = .center
-        
+    
         NSLayoutConstraint.activate([
-            rockButtonView.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor),
+            rockButtonView.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor, constant: -view.frame.width / 3.3),
             rockButtonView.centerYAnchor.constraint(equalTo: buttonsView.centerYAnchor),
             rockButtonView.heightAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9),
-            rockButtonView.widthAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9),
-            //ImageView constraits
-            rockButtonView.imageView!.topAnchor.constraint(equalTo: rockButtonView.topAnchor, constant: 7),
-            rockButtonView.imageView!.centerXAnchor.constraint(equalTo: rockButtonView.centerXAnchor),
-            rockButtonView.imageView!.widthAnchor.constraint(equalTo: rockButtonView.widthAnchor, multiplier: 0.7),
-            rockButtonView.imageView!.heightAnchor.constraint(equalTo: rockButtonView.widthAnchor, multiplier: 0.7),
-            //TitleView constraits
-            rockButtonView.titleLabel!.bottomAnchor.constraint(equalTo: rockButtonView.bottomAnchor),
-            rockButtonView.titleLabel!.centerXAnchor.constraint(equalTo: rockButtonView.centerXAnchor),
-            rockButtonView.titleLabel!.widthAnchor.constraint(equalTo: rockButtonView.widthAnchor, multiplier: 0.9),
-            rockButtonView.titleLabel!.heightAnchor.constraint(equalTo: rockButtonView.heightAnchor, multiplier: 0.2)
-            
+            rockButtonView.widthAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9)
+        ])
+    }
+    
+    func configureScissorsButtonView() {
+        
+        view.addSubview(scissorsButtonView)
+        
+        NSLayoutConstraint.activate([
+            scissorsButtonView.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor),
+            scissorsButtonView.centerYAnchor.constraint(equalTo: buttonsView.centerYAnchor),
+            scissorsButtonView.heightAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9),
+            scissorsButtonView.widthAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9)
         ])
         
     }
     
     func configurePapperButtonView() {
+        
         view.addSubview(papperButtonView)
         
         NSLayoutConstraint.activate([
-            papperButtonView.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor, constant: -view.frame.width / 3.3),
+            papperButtonView.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor, constant: view.frame.width / 3.3),
             papperButtonView.centerYAnchor.constraint(equalTo: buttonsView.centerYAnchor),
             papperButtonView.heightAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9),
             papperButtonView.widthAnchor.constraint(equalTo: buttonsView.heightAnchor, multiplier: 0.9)
