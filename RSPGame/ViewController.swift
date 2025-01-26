@@ -15,10 +15,16 @@ class ViewController: UIViewController {
     private let leftHandImageView = UIImageView()
     private let rightHandImageView = UIImageView()
     private let startButtonView = UIButton(type: .system)
+    private let buttonsView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         pipelineUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        buttonsView.layer.cornerRadius = buttonsView.frame.height / 3
     }
 
 }
@@ -27,22 +33,18 @@ class ViewController: UIViewController {
 private extension ViewController {
     
     func pipelineUI() {
-        view.addSubview(backgroundImageView)
-        view.addSubview(titleLabelView)
-        view.addSubview(scoreLabelView)
-        view.addSubview(leftHandImageView)
-        view.addSubview(rightHandImageView)
-        view.addSubview(startButtonView)
-        
         configureBackgroundImageView()
         configureTitleLabelView()
         configureScoreLabelView()
         configureLeftHandImageView()
         configureRightHandImageView()
+        configureButtonsView()
         configureStartButtonView()
     }
     
     func configureBackgroundImageView() {
+        
+        view.addSubview(backgroundImageView)
         
         backgroundImageView.image = .background1
         backgroundImageView.contentMode = .scaleAspectFill
@@ -57,6 +59,8 @@ private extension ViewController {
     }
     
     func configureTitleLabelView() {
+        
+        view.addSubview(titleLabelView)
         
         titleLabelView.text = "Rock Paper Scissors"
         titleLabelView.textColor = .textColor
@@ -75,6 +79,8 @@ private extension ViewController {
     
     func configureScoreLabelView() {
         
+        view.addSubview(scoreLabelView)
+        
         scoreLabelView.text = "0:0"
         scoreLabelView.textColor = .textColor
         scoreLabelView.font = UIFont(name: "Baloo Cyrillic", size: 500)
@@ -92,6 +98,8 @@ private extension ViewController {
     
     func configureLeftHandImageView() {
         
+        view.addSubview(leftHandImageView)
+        
         leftHandImageView.image = .leftPaper1
         leftHandImageView.contentMode = .scaleToFill
         leftHandImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +113,8 @@ private extension ViewController {
     }
     
     func configureRightHandImageView() {
+        
+        view.addSubview(rightHandImageView)
         
         rightHandImageView.image = .rightScissors1
         rightHandImageView.contentMode = .scaleToFill
@@ -120,6 +130,8 @@ private extension ViewController {
     
     func configureStartButtonView() {
         
+        view.addSubview(startButtonView)
+        
         startButtonView.setTitle("start", for: .normal)
         startButtonView.tintColor = .white
         startButtonView.titleLabel?.font = UIFont(name: "BerkshireSwash-Regular", size: 500)
@@ -131,12 +143,28 @@ private extension ViewController {
         
         NSLayoutConstraint.activate([
             startButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButtonView.topAnchor.constraint(equalTo: leftHandImageView.bottomAnchor, constant: 50),
+            startButtonView.bottomAnchor.constraint(equalTo: buttonsView.topAnchor, constant: -50),
             startButtonView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             startButtonView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07),
             
             startButtonView.titleLabel!.centerXAnchor.constraint(equalTo: startButtonView.centerXAnchor),
             startButtonView.titleLabel!.centerYAnchor.constraint(equalTo: startButtonView.centerYAnchor, constant: -3)
+        ])
+        
+    }
+    
+    func configureButtonsView() {
+        
+        view.addSubview(buttonsView)
+        buttonsView.backgroundColor = .darkButtonBackgroundColor
+        buttonsView.layer.opacity = 0.6
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            buttonsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.97),
+            buttonsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
         
     }
