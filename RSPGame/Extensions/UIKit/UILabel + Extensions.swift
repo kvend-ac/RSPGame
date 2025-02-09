@@ -5,7 +5,7 @@
 //  Created by Сергей Прасолов on 09.02.2025.
 //
 
-<<<<<<< HEAD
+
 import UIKit
 
 extension UILabel {
@@ -19,6 +19,4 @@ extension UILabel {
         return label
     }
 }
-=======
-import Foundation
->>>>>>> 6516d439901935bd0a53f9fcf5bf96be72139a15
+
