@@ -6,6 +6,7 @@
 //
 
 import Foundation
+<<<<<<< HEAD
 
 class GameModel {
     
@@ -24,3 +25,5 @@ class GameModel {
     }
     
 }
+=======
+>>>>>>> 6516d439901935bd0a53f9fcf5bf96be72139a15
